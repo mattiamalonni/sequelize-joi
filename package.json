@@ -1,0 +1,29 @@
+{
+  "name": "sequelize-joi",
+  "version": "2.0.0",
+  "description": "Joi schema validation for Sequelize models",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattiamalonni/sequelize-joi.git"
+  },
+  "author": {
+    "name": "Mattia Malonni",
+    "email": "mattia.malonni@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Edward Ruchevits",
+      "email": "edward@tallysticks.io"
+    }
+  ],
+  "dependencies": {
+    "joi": "^17.0.0",
+    "sequelize": "^6.0.0"
+  },
+  "devDependencies": {
+    "mysql2": "^2.3.2",
+    "pg": "^7.3.0"
+  }
+}
