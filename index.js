@@ -1,8 +1,9 @@
 "use strict";
 
 const { ValidationError, ValidationErrorItem } = require("sequelize");
+const Joi = require("joi");
 
-module.exports = (sequelize) => {
+const sequelizeJoi = (sequelize) => {
   if (!sequelize) {
     throw new Error("The required sequelize instance option is missing");
   }
@@ -57,4 +58,9 @@ module.exports = (sequelize) => {
       throw new ValidationError(null, validationErrors);
     }
   });
+};
+
+module.exports = {
+  sequelizeJoi,
+  Joi,
 };

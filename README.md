@@ -1,68 +1,37 @@
 # Sequelize Joi
 
-Allows specifying [Joi](https://github.com/hapijs/joi) validation schema for `JSONB` model attributes in [Sequelize](https://github.com/sequelize/sequelize).
+Allows specifying [Joi](https://github.com/sideway/joi) validation schema for model attributes in [Sequelize](https://github.com/sequelize/sequelize).
 
 ### Installation
 
-```
-npm install --save sequelize-joi
+```bash
+npm install sequelize-joi
 ```
 
 ### Usage
 
-```js
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize();
-const sequelizeJoi = require("sequelize-joi");
-sequelizeJoi(sequelize);
-```
+```javascript
+const { Sequelize, DataTypes } = require("sequelize");
+const { sequelizeJoi, Joi } = require("sequelize-joi");
 
-Custom Joi object may be passed:
-
-```js
-const Joi = require("joi");
-const CustomJoi = Joi.extend((joi) => {});
-sequelizeJoi(sequelize, { Joi: CustomJoi });
-```
-
-### Example
-
-```js
-const SampleModel = sequelize.define("SampleModel", {
-  details: {
-    type: Sequelize.JSONB,
-    allowNull: false,
-    schema: Joi.object().keys({
-      requiredString: Joi.string().required(),
-      optionalString: Joi.string().default(null),
-      optionalObject: Joi.object().keys({
-        requiredSubNumber: Joi.number().required(),
-      }),
-    }),
-  },
+const database = new Sequelize({
+  ...sequelizeConnectionOptions,
 });
 
-// Validation passes
-await SampleModel.build({
-  details: {
-    requiredString: "One",
-    optionalString: "Two",
-  },
-})
-  .validate()
-  .then((instance) => {
-    // instance contains default values appended by Joi
-  });
+sequelizeJoi(database);
 
-// Validation fails
-await SampleModel.build({
-  details: {
-    optionalString: 123,
+const User = database.define("User", {
+  username: {
+    type: DataTypes.STRING,
+    schema: Joi.string().trim().alphanum().min(6).max(30),
   },
-})
-  .validate()
-  .catch((error) => {
-    // error is a 'SequelizeValidationError'
-    // error.errors is an array of 'SequelizeValidationErrorItem'
-  });
+  email: {
+    type: DataTypes.STRING,
+    schema: Joi.string().trim().required().email(),
+  },
+  password: {
+    type: DataTypes.STRING,
+    schema: Joi.string().trim().required().min(8),
+  },
+});
 ```

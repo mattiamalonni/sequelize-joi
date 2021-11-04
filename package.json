@@ -1,9 +1,15 @@
 {
   "name": "sequelize-joi",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Joi schema validation for Sequelize models",
   "main": "index.js",
   "license": "MIT",
+  "keywords": [
+    "sequelize",
+    "sequelize-plugin",
+    "sequelize-extension",
+    "joi"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mattiamalonni/sequelize-joi.git"
@@ -23,7 +29,7 @@
     "sequelize": "^6.0.0"
   },
   "devDependencies": {
-    "mysql2": "^2.3.2",
-    "pg": "^7.3.0"
+    "mysql2": "^2.0.0",
+    "pg": "^8.0.0"
   }
 }
