@@ -1,6 +1,8 @@
 # Sequelize Joi
 
-> **Deprecated:** This repository is deprecated. Please use [sequelize-zod](https://github.com/mattiamalonni/sequelize-zod) instead.
+## DEPRECATED
+
+**This repository is deprecated. Please use [sequelize-zod](https://github.com/mattiamalonni/sequelize-zod) instead.**
 
 Allows specifying [Joi](https://github.com/sideway/joi) validation schema for model attributes in [Sequelize](https://github.com/sequelize/sequelize).
 
